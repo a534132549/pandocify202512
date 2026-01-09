@@ -1,0 +1,5 @@
+{
+  "name": "Pandocify",
+  "description": "A professional Markdown to Word converter with live LaTeX preview, utilizing Pandoc for high-fidelity OMML math generation. Includes AI-powered example generation.",
+  "requestFramePermissions": []
+}

@@ -1,0 +1,66 @@
+@media print {
+
+  /* Hide everything by default */
+  body * {
+    visibility: hidden;
+  }
+
+  /* Unhide the preview area and its children */
+  #preview-container,
+  #preview-container * {
+    visibility: visible;
+  }
+
+  /* Position the preview container at the top */
+  #preview-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: visible !important;
+    height: auto !important;
+    z-index: 9999;
+  }
+
+  /* CRITICAL: Reset the parent container relative positioning and overflow */
+  #content-area {
+    position: static !important;
+    overflow: visible !important;
+    height: auto !important;
+    display: block !important;
+  }
+
+  /* Reset general layout containers just in case */
+  #root,
+  body,
+  html {
+    height: auto !important;
+    overflow: visible !important;
+    position: static !important;
+  }
+
+  /* CRITICAL: Reset the scrollable inner div to allow full height printing */
+  #preview-container>div {
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  /* Hide the preview header (the first child div inside preview-container) */
+  #preview-container>div:first-child {
+    display: none !important;
+  }
+
+  /* Ensure no scrollbars/clipping in print */
+  html,
+  body {
+    height: auto;
+    overflow: visible !important;
+  }
+
+  /* Hide specific UI distractions if they are inside the preview container (unlikely but safe) */
+  .no-print {
+    display: none !important;
+  }
+}
