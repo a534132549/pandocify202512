@@ -71,3 +71,30 @@ Ensure your frontend uses the environment variable:
 // services/pandoc.ts
 const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:4000';
 ```
+
+---
+
+## 3. Frontend Deployment (Cloudflare Pages) / 前端部署 (Cloudflare - 推荐大陆用户)
+
+Cloudflare Pages is also excellent and often faster in China.
+Cloudflare Pages 也是极佳的选择，通常在中国大陆的访问速度更快。
+
+### Steps / 步骤:
+1.  **Log in** to [Cloudflare Dashboard](https://dash.cloudflare.com/).
+    登录 Cloudflare 控制台。
+2.  Go to **Workers & Pages** -> **Create Application** -> **Pages** -> **Connect to Git**.
+    进入 **Workers & Pages** -> **Create Application** -> **Pages** -> **Connect to Git**。
+3.  **Select Repository**: Choose your project.
+    选择您的 GitHub 仓库 `pandocify202512`。
+4.  **Build Settings / 构建设置**:
+    *   **Framework Preset**: Select **Vite** (or manually set as below).
+        选择 **Vite**。
+    *   **Build Command**: `npm run build`
+    *   **Build Output Directory**: `dist`
+5.  **Environment Variables / 环境变量**:
+    *   Click **Environment Variables** (Production).
+        点击 **Environment Variables** (Production)。
+    *   **Variable name**: `VITE_API_BASE_URL`
+    *   **Value**: `https://your-render-backend-url.onrender.com` (From Render / Render 的后端地址)
+6.  **Save and Deploy**.
+    点击 **Save and Deploy**。
