@@ -1,7 +1,7 @@
 import { ConvertResponse } from '../types';
 
-// Use relative path - Vite proxy handles the rest
-const API_URL = '';
+// Use environment variable for production, or relative path (proxy) for dev
+const API_URL = import.meta.env.VITE_API_BASE_URL || '';
 
 const cleanMarkdownForExport = (text: string): string => {
   // Remove citation markers like [cite_start] and [cite: 123]

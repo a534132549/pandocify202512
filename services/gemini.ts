@@ -1,18 +1,18 @@
 import { GoogleGenAI } from "@google/genai";
 
 export const generateMathExample = async (): Promise<string> => {
-  if (!process.env.API_KEY) {
-    throw new Error("API_KEY not found in environment variables");
+  if (!import.meta.env.VITE_API_KEY) {
+    throw new Error("VITE_API_KEY not found in environment variables");
   }
 
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-  
+  const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
+
   try {
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
       contents: "Generate a short academic markdown snippet about Quantum Mechanics. Include at least 2 inline math formulas using $...$ and 1 block math formula using $$...$$. Keep it concise.",
       config: {
-          temperature: 0.7,
+        temperature: 0.7,
       }
     });
 

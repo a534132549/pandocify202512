@@ -38,7 +38,7 @@ export const ActionPanel: React.FC<ActionPanelProps> = ({ markdown, setMarkdown 
   };
 
   const handleAiGenerate = async () => {
-    if (!process.env.API_KEY) {
+    if (!import.meta.env.VITE_API_KEY) {
       alert("Please set the API_KEY environment variable to use AI features.");
       return;
     }
