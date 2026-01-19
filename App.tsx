@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { wakeUpBackend } from './services/pandoc';
 import { Layout } from './components/Layout';
 import { Editor } from './components/Editor';
 import { Preview } from './components/Preview';
@@ -39,11 +40,15 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>(Tab.EDITOR);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Simple responsive check
+  // Simple responsive check & Wake up backend
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
     window.addEventListener('resize', checkMobile);
+
+    // Wake up the backend on load (Cold Start Fix)
+    wakeUpBackend();
+
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 

@@ -8,6 +8,17 @@ const cleanMarkdownForExport = (text: string): string => {
   return text.replace(/\[cite_start\]|\[cite:\s*\d+\]/g, '');
 };
 
+
+export const wakeUpBackend = async (): Promise<void> => {
+  try {
+    console.log("Pinging backend to wake up...");
+    // Fire and forget - just to wake up the Render instance
+    fetch(`${API_URL}/health`, { method: 'GET' }).catch(err => console.debug("Wake-up ping silent fail:", err));
+  } catch (e) {
+    // Ignore errors for wake-up ping
+  }
+};
+
 export const convertMarkdownToDocx = async (markdown: string): Promise<ConvertResponse> => {
   try {
     const cleanedMarkdown = cleanMarkdownForExport(markdown);
