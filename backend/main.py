@@ -35,6 +35,10 @@ def remove_file(path: str):
     except Exception:
         pass
 
+@app.get("/health")
+def health_check():
+    return {"status": "ok", "message": "Service is running"}
+
 @app.post("/convert")
 async def convert_markdown(request: MarkdownRequest, background_tasks: BackgroundTasks):
     unique_id = uuid.uuid4()

@@ -98,3 +98,29 @@ Cloudflare Pages 也是极佳的选择，通常在中国大陆的访问速度更
     *   **Value**: `https://your-render-backend-url.onrender.com` (From Render / Render 的后端地址)
 6.  **Save and Deploy**.
     点击 **Save and Deploy**。
+
+---
+
+## 4. Optimize Download Speed (Cold Start Fix) / 优化下载速度 (解决冷启动)
+
+**Issue**: On Render's Free Tier, your backend will "sleep" after 15 minutes of inactivity. The next request will take ~30-50 seconds to wake it up.
+**问题**: Render 免费版在闲置 15 分钟后会进入“休眠”。下次访问时需要 30-50 秒的启动时间。
+
+**Solution**: Use a free monitoring service to ping your backend every 10 minutes.
+**解决方案**: 使用免费监控服务每 10 分钟访问一次您的后端，保持其唤醒状态。
+
+### Steps / 步骤:
+1.  **Sign up** for a free monitor like [UptimeRobot](https://uptimerobot.com/) or [Cron-job.org](https://cron-job.org/).
+    注册一个免费监控服务，如 UptimeRobot 或 Cron-job.org。
+2.  **Add New Monitor / HTTP Request** (新建监控):
+    *   **Monitor Type**: HTTP(s)
+    *   **URL**: `https://your-render-backend-url.onrender.com/health` **(Note the `/health`)**
+        地址填入您的 Render 后端地址，**后面加上 `/health`**。
+    *   **Interval**: 5 minutes or 10 minutes.
+        间隔设置为 5 或 10 分钟。
+3.  **Start Monitor**.
+    开始监控。
+
+Now your service will stay active, and downloads will be fast every time!
+这样您的服务也会一直保持在线，每次下载都会秒开！
+
